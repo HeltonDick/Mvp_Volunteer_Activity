@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model user {
+  id        Int        @id @default(autoincrement()) @map("id")
+  name      String
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  activities activity[]
+
+  @@map("users")
+}
+
+model activity {
+  id          Int      @id @default(autoincrement()) @map("id")
+  name        String
+  description String
+  date        DateTime
+  location    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  authorId    Int?     @map("author_id")
+  author      user?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  @@map("activities")
+}
