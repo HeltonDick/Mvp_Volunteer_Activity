@@ -12,6 +12,7 @@ import {
 import { ActivitiesService } from './activities.service';
 import { CreateActivityDto } from './types/create-activitie.dto';
 import { UpdateActivityDto } from './types/update-activitie.dto';
+import { Roles } from '../common/decorators/roles.decorator';
 
 @Controller('activities')
 export class ActivitiesController {
@@ -25,18 +26,24 @@ export class ActivitiesController {
     return this.activitiesService.get(id);
   }
 
-  @Post() create(@Body() data: CreateActivityDto) {
+  @Post()
+  @Roles('ADMIN')
+  create(@Body() data: CreateActivityDto) {
     return this.activitiesService.create(data);
   }
 
-  @Patch(':id') update(
+  @Patch(':id')
+  @Roles('ADMIN')
+  update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateActivityDto,
   ) {
     return this.activitiesService.update(id, dto);
   }
 
-  @Delete(':id') delete(@Param('id', ParseIntPipe) id: number) {
+  @Delete(':id')
+  @Roles('ADMIN')
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.activitiesService.delete(id);
   }
 }

@@ -160,7 +160,9 @@ export type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? n
 export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
+    readonly user: "user";
     readonly activity: "activity";
+    readonly activity_participant: "activity_participant";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -173,10 +175,76 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "activity";
+        modelProps: "user" | "activity" | "activity_participant";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
+        user: {
+            payload: Prisma.$userPayload<ExtArgs>;
+            fields: Prisma.userFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.userFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.userFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                findFirst: {
+                    args: Prisma.userFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.userFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                findMany: {
+                    args: Prisma.userFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>[];
+                };
+                create: {
+                    args: Prisma.userCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                createMany: {
+                    args: Prisma.userCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                delete: {
+                    args: Prisma.userDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                update: {
+                    args: Prisma.userUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.userDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.userUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                upsert: {
+                    args: Prisma.userUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$userPayload>;
+                };
+                aggregate: {
+                    args: Prisma.UserAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateUser>;
+                };
+                groupBy: {
+                    args: Prisma.userGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.UserGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.userCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number;
+                };
+            };
+        };
         activity: {
             payload: Prisma.$activityPayload<ExtArgs>;
             fields: Prisma.activityFieldRefs;
@@ -243,6 +311,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        activity_participant: {
+            payload: Prisma.$activity_participantPayload<ExtArgs>;
+            fields: Prisma.activity_participantFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.activity_participantFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.activity_participantFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                findFirst: {
+                    args: Prisma.activity_participantFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.activity_participantFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                findMany: {
+                    args: Prisma.activity_participantFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>[];
+                };
+                create: {
+                    args: Prisma.activity_participantCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                createMany: {
+                    args: Prisma.activity_participantCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                delete: {
+                    args: Prisma.activity_participantDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                update: {
+                    args: Prisma.activity_participantUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.activity_participantDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.activity_participantUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                upsert: {
+                    args: Prisma.activity_participantUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$activity_participantPayload>;
+                };
+                aggregate: {
+                    args: Prisma.Activity_participantAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateActivity_participant>;
+                };
+                groupBy: {
+                    args: Prisma.activity_participantGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Activity_participantGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.activity_participantCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Activity_participantCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -274,6 +408,16 @@ export declare const TransactionIsolationLevel: {
     readonly Serializable: "Serializable";
 };
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+export declare const UserScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly email: "email";
+    readonly password: "password";
+    readonly role: "role";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 export declare const ActivityScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
@@ -282,13 +426,33 @@ export declare const ActivityScalarFieldEnum: {
     readonly location: "location";
     readonly createdAt: "createdAt";
     readonly updatedAt: "updatedAt";
+    readonly authorId: "authorId";
 };
 export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum];
+export declare const Activity_participantScalarFieldEnum: {
+    readonly id: "id";
+    readonly activityId: "activityId";
+    readonly participantId: "participantId";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+};
+export type Activity_participantScalarFieldEnum = (typeof Activity_participantScalarFieldEnum)[keyof typeof Activity_participantScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
 };
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
+export declare const userOrderByRelevanceFieldEnum: {
+    readonly name: "name";
+    readonly email: "email";
+    readonly password: "password";
+};
+export type userOrderByRelevanceFieldEnum = (typeof userOrderByRelevanceFieldEnum)[keyof typeof userOrderByRelevanceFieldEnum];
+export declare const NullsOrder: {
+    readonly first: "first";
+    readonly last: "last";
+};
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 export declare const activityOrderByRelevanceFieldEnum: {
     readonly name: "name";
     readonly description: "description";
@@ -297,6 +461,7 @@ export declare const activityOrderByRelevanceFieldEnum: {
 export type activityOrderByRelevanceFieldEnum = (typeof activityOrderByRelevanceFieldEnum)[keyof typeof activityOrderByRelevanceFieldEnum];
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>;
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>;
+export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>;
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
 export type BatchPayload = {
@@ -327,7 +492,9 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 }
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
+    user?: Prisma.userOmit;
     activity?: Prisma.activityOmit;
+    activity_participant?: Prisma.activity_participantOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

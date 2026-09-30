@@ -10,12 +10,21 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const acrivities_module_1 = require("./activities/acrivities.module");
 const prima_module_1 = require("./prisma/prima.module");
+const users_module_1 = require("./users/users.module");
+const activityparticipant_module_1 = require("./volunteer/activityparticipant.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [acrivities_module_1.ActivitiesModule, prima_module_1.PrismaModule],
+        imports: [
+            acrivities_module_1.ActivitiesModule,
+            prima_module_1.PrismaModule,
+            users_module_1.UsersModule,
+            activityparticipant_module_1.ActivityParticipantsModule,
+            auth_module_1.AuthModule,
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

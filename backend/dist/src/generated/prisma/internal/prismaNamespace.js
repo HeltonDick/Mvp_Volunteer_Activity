@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.activityOrderByRelevanceFieldEnum = exports.SortOrder = exports.ActivityScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.activityOrderByRelevanceFieldEnum = exports.NullsOrder = exports.userOrderByRelevanceFieldEnum = exports.SortOrder = exports.Activity_participantScalarFieldEnum = exports.ActivityScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/client"));
 exports.PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError;
 exports.PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError;
@@ -60,7 +60,9 @@ exports.DbNull = runtime.DbNull;
 exports.JsonNull = runtime.JsonNull;
 exports.AnyNull = runtime.AnyNull;
 exports.ModelName = {
-    activity: 'activity'
+    user: 'user',
+    activity: 'activity',
+    activity_participant: 'activity_participant'
 };
 exports.TransactionIsolationLevel = runtime.makeStrictEnum({
     ReadUncommitted: 'ReadUncommitted',
@@ -68,6 +70,15 @@ exports.TransactionIsolationLevel = runtime.makeStrictEnum({
     RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
+exports.UserScalarFieldEnum = {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    password: 'password',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
 exports.ActivityScalarFieldEnum = {
     id: 'id',
     name: 'name',
@@ -75,11 +86,28 @@ exports.ActivityScalarFieldEnum = {
     date: 'date',
     location: 'location',
     createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    authorId: 'authorId'
+};
+exports.Activity_participantScalarFieldEnum = {
+    id: 'id',
+    activityId: 'activityId',
+    participantId: 'participantId',
+    createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
 exports.SortOrder = {
     asc: 'asc',
     desc: 'desc'
+};
+exports.userOrderByRelevanceFieldEnum = {
+    name: 'name',
+    email: 'email',
+    password: 'password'
+};
+exports.NullsOrder = {
+    first: 'first',
+    last: 'last'
 };
 exports.activityOrderByRelevanceFieldEnum = {
     name: 'name',

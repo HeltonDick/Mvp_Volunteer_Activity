@@ -7,27 +7,49 @@ datasource db {
   provider = "mysql"
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model user {
-  id        Int        @id @default(autoincrement()) @map("id")
-  name      String
-  email     String     @unique
-  password  String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  activities activity[]
+  id             Int                    @id @default(autoincrement()) @map("id")
+  name           String
+  email          String                 @unique
+  password       String
+  role           Role                   @default(USER)
+  createdAt      DateTime               @default(now()) @map("created_at")
+  updatedAt      DateTime               @updatedAt @map("updated_at")
+  activities     activity[]
+  participations activity_participant[]
 
   @@map("users")
 }
 
 model activity {
-  id          Int      @id @default(autoincrement()) @map("id")
-  name        String
-  description String
-  date        DateTime
-  location    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  authorId    Int?     @map("author_id")
-  author      user?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  id           Int                    @id @default(autoincrement()) @map("id")
+  name         String
+  description  String
+  date         DateTime
+  location     String
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  authorId     Int?                   @map("author_id")
+  author       user?                  @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  participants activity_participant[]
+
   @@map("activities")
+}
+
+model activity_participant {
+  id            Int      @id @default(autoincrement()) @map("id")
+  activityId    Int      @map("activity_id")
+  participantId Int      @map("participant_id")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  activity      activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  participant   user     @relation(fields: [participantId], references: [id], onDelete: Cascade)
+
+  @@unique([activityId, participantId])
+  @@map("activity_participants")
 }

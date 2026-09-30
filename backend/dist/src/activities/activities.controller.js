@@ -8,17 +8,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActivitiesController = void 0;
 const common_1 = require("@nestjs/common");
 const activities_service_1 = require("./activities.service");
+const create_activitie_dto_1 = require("./types/create-activitie.dto");
+const update_activitie_dto_1 = require("./types/update-activitie.dto");
+const roles_decorator_1 = require("../common/decorators/roles.decorator");
 let ActivitiesController = class ActivitiesController {
     activitiesService;
     constructor(activitiesService) {
         this.activitiesService = activitiesService;
     }
-    findAll() {
-        return this.activitiesService.findall();
+    list() {
+        return this.activitiesService.list();
+    }
+    get(id) {
+        return this.activitiesService.get(id);
+    }
+    create(data) {
+        return this.activitiesService.create(data);
+    }
+    update(id, dto) {
+        return this.activitiesService.update(id, dto);
+    }
+    delete(id) {
+        return this.activitiesService.delete(id);
     }
 };
 exports.ActivitiesController = ActivitiesController;
@@ -27,7 +45,39 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], ActivitiesController.prototype, "findAll", null);
+], ActivitiesController.prototype, "list", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], ActivitiesController.prototype, "get", null);
+__decorate([
+    (0, common_1.Post)(),
+    (0, roles_decorator_1.Roles)('ADMIN'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_activitie_dto_1.CreateActivityDto]),
+    __metadata("design:returntype", void 0)
+], ActivitiesController.prototype, "create", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    (0, roles_decorator_1.Roles)('ADMIN'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, update_activitie_dto_1.UpdateActivityDto]),
+    __metadata("design:returntype", void 0)
+], ActivitiesController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    (0, roles_decorator_1.Roles)('ADMIN'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], ActivitiesController.prototype, "delete", null);
 exports.ActivitiesController = ActivitiesController = __decorate([
     (0, common_1.Controller)('activities'),
     __metadata("design:paramtypes", [activities_service_1.ActivitiesService])
